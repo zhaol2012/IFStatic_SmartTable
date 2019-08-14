@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" 
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" 
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" 
+    xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://ldcisal.wdf.sap.corp:50026/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" 
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://ldcisal.wdf.sap.corp:50026/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" 
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://ldcisal.wdf.sap.corp:50026/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" 
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://ldcisal.wdf.sap.corp:50026/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" 
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://ldcisal.wdf.sap.corp:50026/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" 
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZAND_IF_STA_CDS" xml:lang="en" sap:schema-version="1" 
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZAND_IF_STAType" sap:label="Get static for interface" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="uname"/>
+                    <PropertyRef Name="datetime_from"/>
+                    <PropertyRef Name="datetime_to"/>
+                    <PropertyRef Name="ns"/>
+                    <PropertyRef Name="ifname"/>
+                    <PropertyRef Name="ifver"/>
+                </Key>
+                <Property Name="uname" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/>
+                <Property Name="datetime_from" Type="Edm.DateTimeOffset" Nullable="false" Precision="0" sap:label="UTC Timestamp"/>
+                <Property Name="datetime_to" Type="Edm.DateTimeOffset" Nullable="false" Precision="0" sap:label="UTC Timestamp"/>
+                <Property Name="ns" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="UpperCase" sap:text="ns_Text" sap:label="Namespace" sap:value-list="standard"/>
+                <Property Name="ns_Text" Type="Edm.String" MaxLength="50" sap:label="Description" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ifname" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Interface Name"/>
+                <Property Name="ifver" Type="Edm.String" Nullable="false" MaxLength="5" sap:display-format="UpperCase" sap:label="Interface Version"/>
+                <Property Name="count_all" Type="Edm.Int32" sap:label="All Messages"/>
+                <Property Name="count_w" Type="Edm.Int32" sap:label="Warnings"/>
+                <Property Name="count_e" Type="Edm.Int32" sap:label="Errors"/>
+                <Property Name="count_a" Type="Edm.Int32" sap:label="Technical Errors"/>
+                <Property Name="count_i" Type="Edm.Int32" sap:label="In Process"/>
+                <Property Name="count_s" Type="Edm.Int32" sap:label="Success"/>
+                <Property Name="count_c" Type="Edm.Int32" sap:label="Canceled"/>
+                <NavigationProperty Name="to_NSValueHelp" Relationship="ZAND_IF_STA_CDS.assoc_C16B63AA7AF039EA4AB29ECCF8C27F90" FromRole="FromRole_assoc_C16B63AA7AF039EA4AB29ECCF8C27F90" ToRole="ToRole_assoc_C16B63AA7AF039EA4AB29ECCF8C27F90"/>
+                <NavigationProperty Name="to_Text" Relationship="ZAND_IF_STA_CDS.assoc_BBADFB1D724F2CB7465A0942C29F37A3" FromRole="FromRole_assoc_BBADFB1D724F2CB7465A0942C29F37A3" ToRole="ToRole_assoc_BBADFB1D724F2CB7465A0942C29F37A3"/>
+                <NavigationProperty Name="Parameters" Relationship="ZAND_IF_STA_CDS.assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE" FromRole="ToRole_assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE" ToRole="FromRole_assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ZAND_IF_STAParameters" sap:semantics="parameters" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="uname"/>
+                    <PropertyRef Name="datetime_from"/>
+                    <PropertyRef Name="datetime_to"/>
+                </Key>
+                <Property Name="uname" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:parameter="mandatory" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="datetime_from" Type="Edm.DateTimeOffset" Nullable="false" Precision="0" sap:parameter="mandatory" sap:label="UTC Timestamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="datetime_to" Type="Edm.DateTimeOffset" Nullable="false" Precision="0" sap:parameter="mandatory" sap:label="UTC Timestamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Set" Relationship="ZAND_IF_STA_CDS.assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE" FromRole="FromRole_assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE" ToRole="ToRole_assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE"/>
+            </EntityType>
+            <EntityType Name="ZAND_INF_descType" sap:label="Infterface Description" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ns"/>
+                    <PropertyRef Name="ifname"/>
+                    <PropertyRef Name="ifversion"/>
+                    <PropertyRef Name="spras"/>
+                </Key>
+                <Property Name="ns" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="UpperCase" sap:label="Namespace"/>
+                <Property Name="ifname" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Interface Name"/>
+                <Property Name="ifversion" Type="Edm.String" Nullable="false" MaxLength="5" sap:display-format="UpperCase" sap:label="Interface Version"/>
+                <Property Name="spras" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key"/>
+                <Property Name="ifdesc" Type="Edm.String" MaxLength="50" sap:label="Description"/>
+            </EntityType>
+            <EntityType Name="ZAND_INF_VHType" sap:label="Get interface value help information" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ns"/>
+                </Key>
+                <Property Name="ns" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="UpperCase" sap:text="ns_Text" sap:label="Namespace"/>
+                <Property Name="ns_Text" Type="Edm.String" MaxLength="50" sap:label="Description" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <Association Name="assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE" sap:content-version="1">
+                <End Type="ZAND_IF_STA_CDS.ZAND_IF_STAParameters" Multiplicity="1" Role="FromRole_assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE"/>
+                <End Type="ZAND_IF_STA_CDS.ZAND_IF_STAType" Multiplicity="*" Role="ToRole_assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE"/>
+            </Association>
+            <Association Name="assoc_BBADFB1D724F2CB7465A0942C29F37A3" sap:content-version="1">
+                <End Type="ZAND_IF_STA_CDS.ZAND_IF_STAType" Multiplicity="1" Role="FromRole_assoc_BBADFB1D724F2CB7465A0942C29F37A3"/>
+                <End Type="ZAND_IF_STA_CDS.ZAND_INF_descType" Multiplicity="1" Role="ToRole_assoc_BBADFB1D724F2CB7465A0942C29F37A3"/>
+            </Association>
+            <Association Name="assoc_C16B63AA7AF039EA4AB29ECCF8C27F90" sap:content-version="1">
+                <End Type="ZAND_IF_STA_CDS.ZAND_IF_STAType" Multiplicity="1" Role="FromRole_assoc_C16B63AA7AF039EA4AB29ECCF8C27F90"/>
+                <End Type="ZAND_IF_STA_CDS.ZAND_INF_VHType" Multiplicity="0..1" Role="ToRole_assoc_C16B63AA7AF039EA4AB29ECCF8C27F90"/>
+                <ReferentialConstraint>
+                    <Principal Role="ToRole_assoc_C16B63AA7AF039EA4AB29ECCF8C27F90">
+                        <PropertyRef Name="ns"/>
+                    </Principal>
+                    <Dependent Role="FromRole_assoc_C16B63AA7AF039EA4AB29ECCF8C27F90">
+                        <PropertyRef Name="ns"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZAND_IF_STA_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZAND_IF_STASet" EntityType="ZAND_IF_STA_CDS.ZAND_IF_STAType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ZAND_IF_STA" EntityType="ZAND_IF_STA_CDS.ZAND_IF_STAParameters" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ZAND_INF_desc" EntityType="ZAND_IF_STA_CDS.ZAND_INF_descType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZAND_INF_VH" EntityType="ZAND_IF_STA_CDS.ZAND_INF_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <AssociationSet Name="assoc_BBADFB1D724F2CB7465A0942C29F37A3" Association="ZAND_IF_STA_CDS.assoc_BBADFB1D724F2CB7465A0942C29F37A3" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZAND_IF_STASet" Role="FromRole_assoc_BBADFB1D724F2CB7465A0942C29F37A3"/>
+                    <End EntitySet="ZAND_INF_desc" Role="ToRole_assoc_BBADFB1D724F2CB7465A0942C29F37A3"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE" Association="ZAND_IF_STA_CDS.assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZAND_IF_STA" Role="FromRole_assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE"/>
+                    <End EntitySet="ZAND_IF_STASet" Role="ToRole_assoc_3AE8BE25860E3AF9DF3AF68A9DD6F0AE"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_C16B63AA7AF039EA4AB29ECCF8C27F90" Association="ZAND_IF_STA_CDS.assoc_C16B63AA7AF039EA4AB29ECCF8C27F90" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZAND_IF_STASet" Role="FromRole_assoc_C16B63AA7AF039EA4AB29ECCF8C27F90"/>
+                    <End EntitySet="ZAND_INF_VH" Role="ToRole_assoc_C16B63AA7AF039EA4AB29ECCF8C27F90"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZAND_IF_STA_CDS.ZAND_IF_STAType/ns" 
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Get interface value help information"/>
+                        <PropertyValue Property="CollectionPath" String="ZAND_INF_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ns"/>
+                                    <PropertyValue Property="ValueListProperty" String="ns"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ns_Text"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZAND_IF_STA_CDS.ZAND_IF_STA_CDS_Entities" 
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZAND_IF_STA_CDS.ZAND_IF_STA_CDS_Entities/ZAND_IF_STA" 
+                xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>uname</PropertyPath>
+                                <PropertyPath>datetime_from</PropertyPath>
+                                <PropertyPath>datetime_to</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="Parameters"/>
+                                    <PropertyValue Property="FilterRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Filterable" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>uname</PropertyPath>
+                                <PropertyPath>datetime_from</PropertyPath>
+                                <PropertyPath>datetime_to</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://ldcisal.wdf.sap.corp:50026/sap/opu/odata/sap/ZAND_IF_STA_CDS/$metadata" 
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://ldcisal.wdf.sap.corp:50026/sap/opu/odata/sap/ZAND_IF_STA_CDS/$metadata" 
+                xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+.staticGreen {  
+    /* background-color: #66FF33;    */
+    color:#66FF33
+}  
+.staticRed {  
+    /* background-color: #FF3300;   */
+    color:#d64161;
+}  
+.staticYellow {  
+    /* background-color: #FFFF66;   
+    color:#ffef96; */
+    color: #feb236;
+}  
+
+.staticTError {  
+    color:white;
+    background-color: Maroon;
+}  
+
+[data-style-class=Error] {
+    color: #d64161 !important
+}
+
+[data-style-class=InProcess] {
+    color: #feb236 !important
+}
+
+
+[data-style-class=Success] {
+    color: #feb236 !important
+}
