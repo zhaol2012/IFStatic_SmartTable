@@ -68,7 +68,6 @@
                         </smartFilterBar:controlConfiguration>
                     </smartFilterBar:SmartFilterBar> 
                                 <smartTable:SmartTable id="IFSTA" smartFilterId="smartFilterBar" tableType="ResponsiveTable" editable="false" entitySet="ZAND_IF_STASet" 
-                    initiallyVisibleFields="ns,ifname,ifver,count_all,count_w,count_e,count_a,count_i,count_s"
 
                       useVariantManagement="false" useTablePersonalisation="false" header="IFStatistics" showRowCount="true" useExportToExcel="false" enableAutoBinding="false">
                     </smartTable:SmartTable>
